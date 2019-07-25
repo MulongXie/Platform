@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UP Academy</title>
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="nav">
+    <a class="btn"></a>
+    <ul>
+        <li><a href="#a"><span>Timetable</span></a></li>
+        <li><a href="#b"><span>Learning</span></a></li>
+        <li><a href="#c"><span>Platform</span></a></li>
+        <li><a href="#d"><span>Projects</span></a></li>
+    </ul>
+</div>
+
+<div class="sidebar">
+    <ul>
+        <li><a href="#"><span>aaa</span></a></li>
+        <li><a class="ion-social-euro-outline" href="#"><span>aaa</span></a></li>
+        <li><a href="#"><span>aaa</span></a></li>
+        <li><a href="#"><span>aaa</span></a></li>
+        <li><a href="#"><span>aaa</span></a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $('.btn').on('click', function () {
+        $('.btn').toggleClass('btnc');
+        $('.sidebar').toggleClass('sidebar_show');
+    })
+</script>
+
+</body>
+</html>
