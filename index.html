@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>UP Academy</title>
-    <link rel="stylesheet" type="text/css" href="test.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
@@ -27,10 +27,15 @@
     </ul>
 </div>
 
+<div class="page">
+    <img src="img/ad.jpg">
+</div>
+
 <script type="text/javascript">
     $('.btn').on('click', function () {
         $('.btn').toggleClass('btnc');
         $('.sidebar').toggleClass('sidebar_show');
+        $('.page').toggleClass('page_adjust')
     })
 </script>
 
