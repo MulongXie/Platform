@@ -31,7 +31,7 @@
         <img src="img/ad.jpg">
     </div>
     <div class="content">
-        <div class="show">
+        <div class="show_rest">
             <a name="1"><h2>Restaurants</h2></a>
             <a class="btn_slide_left"></a>
             <a class="btn_slide_right"></a>
@@ -40,33 +40,43 @@
                 <li><a href="http://www.4399.com"><img src="img/rest2.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/rest3.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/rest4.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/rest5.jpg"></a></li>
             </ul>
         </div>
-        <div>
+        <div class="show_cafe">
             <a name="2"><h2>Cafe</h2></a>
+            <a class="btn_slide_left"></a>
+            <a class="btn_slide_right"></a>
             <ul>
                 <li><a href="http://www.4399.com"><img src="img/cafe1.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/cafe2.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/cafe3.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/cafe4.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe5.jpg"></a></li>
             </ul>
         </div>
-        <div>
+        <div class="show_building">
             <a name="3"><h2>Teaching Building</h2></a>
+            <a class="btn_slide_left"></a>
+            <a class="btn_slide_right"></a>
             <ul>
                 <li><a href="http://www.4399.com"><img src="img/building1.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/building2.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/building3.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/building4.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/building5.jpg"></a></li>
             </ul>
         </div>
-        <div>
+        <div class="show_service">
             <a name="4"><h2>Student Services</h2></a>
+            <a class="btn_slide_left"></a>
+            <a class="btn_slide_right"></a>
             <ul>
                 <li><a href="http://www.4399.com"><img src="img/service1.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/service2.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/service3.jpg"></a></li>
                 <li><a href="http://www.4399.com"><img src="img/service4.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/service5.jpg"></a></li>
             </ul>
         </div>
     </div>
@@ -83,20 +93,30 @@
     });
 
     var now = -1;
+    var last_show_class;
+    var right = {};
+    var left = {};
 
     $('.btn_slide_right').click(function () {
-        let show = $(this).parents('.show');
+        // locate elements
+        let show = $(this).parent();
         let list = show.find('ul');
-
+        // get basic information
         let list_width = list.width();
         let img_width = list.find('li').width();
         let img_num = list.find('li').length;
-
         let total_width = img_width * img_num;
-
+        let move = list.find('img')[0].style.left;
+        if(!isNaN(move)){move = 0;}
+        // initialize global variables while clicking new lists
+        if(last_show_class != show[0].className){
+            last_show_class = show[0].className;
+            now = Math.ceil(Math.abs(parseInt(move)) + list_width);
+        }
         if(now == -1){
             now = list_width;
         }
+        // slide
         if(now + img_width > total_width){
             list.find('li').find('img').animate({left:'-=' + (total_width - now)}, 'slow');
             now = total_width;
@@ -107,19 +127,27 @@
         }
     });
 
-    $('.btn_slide_left').click(function () {
-        let show = $(this).parents('.show');
-        let list = show.find('ul');
 
+    $('.btn_slide_left').click(function () {
+        // locate elements
+        let show = $(this).parent();
+        let list = show.find('ul');
+        // get basic information
         let list_width = list.width();
         let img_width = list.find('li').width();
         let img_num = list.find('li').length;
-
         let total_width = img_width * img_num;
-
+        let move = list.find('img')[0].style.left;
+        if(!isNaN(move)){move = 0;}
+        // initialize global variables while clicking new lists
+        if(last_show_class != show[0].className){
+            last_show_class = show[0].className;
+            now = Math.ceil(Math.abs(parseInt(move)) + list_width);
+        }
         if(now == -1){
             now = list_width;
         }
+        // slide
         if(now - img_width < list_width){
             list.find('li').find('img').animate({left:'+=' + (now - list_width)}, 'slow');
             now = list_width;
@@ -129,8 +157,6 @@
             now -= img_width;
         }
     });
-
-
 
 </script>
 
