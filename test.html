@@ -31,34 +31,44 @@
         <img src="img/ad.jpg">
     </div>
     <div class="content">
-        <a name="1"><h2>Restaurants</h2></a>
-        <ul>
-            <li><a href="http://www.4399.com"><img src="img/rest1.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/rest2.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/rest3.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/rest4.jpg"></a></li>
-        </ul>
-        <a name="2"><h2>Cafe</h2></a>
-        <ul>
-            <li><a href="http://www.4399.com"><img src="img/cafe1.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/cafe2.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/cafe3.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/cafe4.jpg"></a></li>
-        </ul>
-        <a name="3"><h2>Teaching Building</h2></a>
-        <ul>
-            <li><a href="http://www.4399.com"><img src="img/building1.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/building2.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/building3.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/building4.jpg"></a></li>
-        </ul>
-        <a name="4"><h2>Student Services</h2></a>
-        <ul>
-            <li><a href="http://www.4399.com"><img src="img/service1.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/service2.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/service3.jpg"></a></li>
-            <li><a href="http://www.4399.com"><img src="img/service4.jpg"></a></li>
-        </ul>
+        <div class="show">
+            <a name="1"><h2>Restaurants</h2></a>
+            <a class="btn_slide_left"></a>
+            <a class="btn_slide_right"></a>
+            <ul>
+                <li><a href="http://www.4399.com"><img src="img/rest1.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/rest2.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/rest3.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/rest4.jpg"></a></li>
+            </ul>
+        </div>
+        <div>
+            <a name="2"><h2>Cafe</h2></a>
+            <ul>
+                <li><a href="http://www.4399.com"><img src="img/cafe1.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe2.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe3.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe4.jpg"></a></li>
+            </ul>
+        </div>
+        <div>
+            <a name="3"><h2>Teaching Building</h2></a>
+            <ul>
+                <li><a href="http://www.4399.com"><img src="img/building1.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/building2.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/building3.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/building4.jpg"></a></li>
+            </ul>
+        </div>
+        <div>
+            <a name="4"><h2>Student Services</h2></a>
+            <ul>
+                <li><a href="http://www.4399.com"><img src="img/service1.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/service2.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/service3.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/service4.jpg"></a></li>
+            </ul>
+        </div>
     </div>
 
     <div class="footnote"></div>
@@ -66,11 +76,62 @@
 </div>
 
 <script type="text/javascript">
-    $('.btn').on('click', function () {
+    $('.btn').click(function () {
         $('.btn').toggleClass('btnc');
         $('.sidebar').toggleClass('sidebar_show');
         $('.page').toggleClass('page_adjust')
-    })
+    });
+
+    var now = -1;
+
+    $('.btn_slide_right').click(function () {
+        let show = $(this).parents('.show');
+        let list = show.find('ul');
+
+        let list_width = list.width();
+        let img_width = list.find('li').width();
+        let img_num = list.find('li').length;
+
+        let total_width = img_width * img_num;
+
+        if(now == -1){
+            now = list_width;
+        }
+        if(now + img_width > total_width){
+            list.find('li').find('img').animate({left:'-=' + (total_width - now)}, 'slow');
+            now = total_width;
+        }
+        else{
+            list.find('li').find('img').animate({left:'-=' + img_width}, 'slow');
+            now += img_width;
+        }
+    });
+
+    $('.btn_slide_left').click(function () {
+        let show = $(this).parents('.show');
+        let list = show.find('ul');
+
+        let list_width = list.width();
+        let img_width = list.find('li').width();
+        let img_num = list.find('li').length;
+
+        let total_width = img_width * img_num;
+
+        if(now == -1){
+            now = list_width;
+        }
+        if(now - img_width < list_width){
+            list.find('li').find('img').animate({left:'+=' + (now - list_width)}, 'slow');
+            now = list_width;
+        }
+        else{
+            list.find('li').find('img').animate({left:'+=' + img_width}, 'slow');
+            now -= img_width;
+        }
+    });
+
+
+
 </script>
 
 </body>
