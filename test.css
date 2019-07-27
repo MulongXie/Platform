@@ -125,6 +125,9 @@ body, html{
     position: relative;
     z-index: 1;
 }
+.brand{
+    clear: both;
+}
 
 .btn_slide_left{
     margin-top: 80px;
