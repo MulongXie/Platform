@@ -36,11 +36,11 @@
             <a class="btn_slide_left"></a>
             <a class="btn_slide_right"></a>
             <ul>
-                <li><a href="http://www.4399.com"><img src="img/rest1.jpg"></a><p class="brand">Rex</p></li>
-                <li><a href="http://www.4399.com"><img src="img/rest2.jpg"></a><p class="brand">UniCafe</p></li>
-                <li><a href="http://www.4399.com"><img src="img/rest3.jpg"></a><p class="brand">ANU Sports Cafe</p></li>
-                <li><a href="http://www.4399.com"><img src="img/rest4.jpg"></a><p class="brand">Bio Cafe</p></li>
-                <li><a href="http://www.4399.com"><img src="img/rest5.jpg"></a><p class="brand">CBE Cafe</p></li>
+                <li><a href="http://www.4399.com"><img src="img/rest1.jpg"></a><p>China Plate</p></li>
+                <li><a href="http://www.4399.com"><img src="img/rest2.jpg"></a><p>Kababa</p></li>
+                <li><a href="http://www.4399.com"><img src="img/rest3.jpg"></a><p>HotStar</p></li>
+                <li><a href="http://www.4399.com"><img src="img/rest4.jpg"></a><p>Asian Tiger</p></li>
+                <li><a href="http://www.4399.com"><img src="img/rest5.jpg"></a><p>Vietnamese Noodle</p></li>
             </ul>
         </div>
         <div class="show_cafe">
@@ -48,11 +48,11 @@
             <a class="btn_slide_left"></a>
             <a class="btn_slide_right"></a>
             <ul>
-                <li><a href="http://www.4399.com"><img src="img/cafe1.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/cafe2.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/cafe3.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/cafe4.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/cafe5.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe1.jpg"></a><p>Rex</p></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe2.jpg"></a><p>UniCafe</p></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe3.jpg"></a><p>ANU Sports Cafe</p></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe4.jpg"></a><p>Bio Cafe</p></li>
+                <li><a href="http://www.4399.com"><img src="img/cafe5.jpg"></a><p>CBE Cafe</p></li>
             </ul>
         </div>
         <div class="show_building">
@@ -60,11 +60,11 @@
             <a class="btn_slide_left"></a>
             <a class="btn_slide_right"></a>
             <ul>
-                <li><a href="http://www.4399.com"><img src="img/building1.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/building2.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/building3.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/building4.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/building5.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/building1.jpg"></a><p>Bio</p></li>
+                <li><a href="http://www.4399.com"><img src="img/building2.jpg"></a><p>Copland</p></li>
+                <li><a href="http://www.4399.com"><img src="img/building3.jpg"></a><p>Msi</p></li>
+                <li><a href="http://www.4399.com"><img src="img/building4.jpg"></a><p>Asian Study</p></li>
+                <li><a href="http://www.4399.com"><img src="img/building5.jpg"></a><p>CBE</p></li>
             </ul>
         </div>
         <div class="show_service">
@@ -72,11 +72,11 @@
             <a class="btn_slide_left"></a>
             <a class="btn_slide_right"></a>
             <ul>
-                <li><a href="http://www.4399.com"><img src="img/service1.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/service2.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/service3.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/service4.jpg"></a></li>
-                <li><a href="http://www.4399.com"><img src="img/service5.jpg"></a></li>
+                <li><a href="http://www.4399.com"><img src="img/service1.jpg"></a><p>Student Card</p></li>
+                <li><a href="http://www.4399.com"><img src="img/service2.jpg"></a><p>Career</p></li>
+                <li><a href="http://www.4399.com"><img src="img/service3.jpg"></a><p>Medical Care</p></li>
+                <li><a href="http://www.4399.com"><img src="img/service4.jpg"></a><p>Mental Service</p></li>
+                <li><a href="http://www.4399.com"><img src="img/service5.jpg"></a><p>ANU Student Association</p></li>
             </ul>
         </div>
     </div>
@@ -94,8 +94,6 @@
 
     var now = -1;
     var last_show_class;
-    var right = {};
-    var left = {};
 
     $('.btn_slide_right').click(function () {
         // locate elements
@@ -119,10 +117,12 @@
         // slide
         if(now + img_width > total_width){
             list.find('li').find('img').animate({left:'-=' + (total_width - now)}, 'slow');
+            list.find('li').find('p').animate({left:'-=' + (total_width - now)}, 'slow');
             now = total_width;
         }
         else{
             list.find('li').find('img').animate({left:'-=' + img_width}, 'slow');
+            list.find('li').find('p').animate({left:'-=' + img_width}, 'slow');
             now += img_width;
         }
     });
@@ -150,10 +150,12 @@
         // slide
         if(now - img_width < list_width){
             list.find('li').find('img').animate({left:'+=' + (now - list_width)}, 'slow');
+            list.find('li').find('p').animate({left:'+=' + (now - list_width)}, 'slow');
             now = list_width;
         }
         else{
             list.find('li').find('img').animate({left:'+=' + img_width}, 'slow');
+            list.find('li').find('p').animate({left:'+=' + img_width}, 'slow');
             now -= img_width;
         }
     });
